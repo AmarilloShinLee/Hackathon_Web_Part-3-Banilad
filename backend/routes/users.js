@@ -11,9 +11,11 @@ router.route('/login').get((req, res) => {
 });
 
 // signup enpoint
-router.route('/sign_up').post((req, res) => {
+
+//Added another end point for sign up
+router.route('/sign_up/add').post((req, res) => {
 	
-	// igka send ug post request makuha ni sila dapat
+	// igka send ug post request makuha ni	 sila dapat
 	const firstname = req.body.firstname;
 	const middlename = req.body.middlename;
 	const lastname = req.body.lastname;

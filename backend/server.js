@@ -19,7 +19,8 @@ mongoose.connect(connectionString, {
 	.then(() => console.log("Connection to the database has been established succesfully"))
 	.catch((error) => console.error("Connection to database has failed... Error: " + error))
 
-app.use('/welcome', userRouter);
+// Uhm... /welcome???
+app.use('/', userRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server is running at PORT: ${PORT}`);
