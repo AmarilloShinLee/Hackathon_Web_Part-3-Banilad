@@ -5,7 +5,7 @@ const Navbar = () => {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar>
-                    <Typography variant='h4'>LOGO NAME</Typography>
+                    <Typography variant='h5'>LOGO NAME</Typography>
                     <Box sx={{flexGrow: 1}} />
                     <Button href='/login' color="inherit">Login</Button>
                     <Button href='/sign_up' color="inherit">Registration</Button>
