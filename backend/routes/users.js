@@ -3,11 +3,14 @@ let User = require('../models/user.model'); // assign temporary variables
 
 // login endpoint
 router.route('/login').get((req, res) => {
+	res.setHeader('Content-type', 'application/json');
 
 	// view all lang sa sa tanan users
 	User.find()
-	.then(users => res.status(200).json(users))
-	.then(error => res.status(400).json('Error! ' + error));
+	.then(users => {
+		res.status(200).json(users)
+	})
+	.catch(error => res.status(400).json('Error! ' + error));
 });
 
 // signup enpoint
