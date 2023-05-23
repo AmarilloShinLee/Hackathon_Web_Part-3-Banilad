@@ -21,6 +21,15 @@ const userSchema = new schema({
 		mindlength: 3
 	},
 
+	age: {
+		type: int,
+		required: true, 
+		unique: false,
+		trim: true,
+		mindlength: 1
+
+	},
+
 	lastname: {
 		type: String,
 		required: true,
