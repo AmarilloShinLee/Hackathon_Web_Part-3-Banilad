@@ -232,6 +232,7 @@ const RegistrationForm = () => {
         if (formControl.id === "Lastname")
             return lastNameError;
 
+        // Try validation bruv
         if (formControl.id === "age")
             return ageError; 
 
