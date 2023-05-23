@@ -1,6 +1,7 @@
 // User Schema/Table. All of the user information is defined here
 
 const mongoose = require('mongoose');
+
 const schema = mongoose.Schema;
 
 const userSchema = new schema({
@@ -28,6 +29,24 @@ const userSchema = new schema({
 		minlength: 3
 	},
 
+
+	height: {
+		type: Number,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 2
+	},
+
+	weight: {
+		type: Number,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 2
+	},
+
+	/*
 	username: {
 		type: String,
 		required: true,
@@ -57,6 +76,7 @@ const userSchema = new schema({
 		trim: true,
 		minlength: 6
 	}
+	*/
 });
 
 // assign this model to the mongoose models

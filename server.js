@@ -20,7 +20,7 @@ mongoose.connect(connectionString, {
 	.catch((error) => console.error("Connection to database has failed... Error: " + error))
 
 // Uhm... /welcome???
-app.use('/', userRouter);
+app.use('/users', userRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server is running at PORT: ${PORT}`);
