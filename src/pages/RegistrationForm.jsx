@@ -5,7 +5,7 @@ import { RegistrationForm } from "../components/Form"
 const RegistrationPage = () => {
     return (
         <Container maxWidth="xl" className='d-flex justify-content-center'>
-            <Paper elevation={4} className='p-4' style={{marginTop: "4em", width: "32em"}}>
+            <Paper elevation={4} className='p-4' style={{marginTop: "2em", marginBottom: "2em", width: "32em"}}>
                 <RegistrationForm />
             </Paper>
         </Container>

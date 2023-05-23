@@ -7,6 +7,92 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+const LoginForm = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [userNameError, setUserNameError] = useState({error: false, helperText: ""});
+    const [passwordError, setPasswordError] = useState({error: false, helperText: ""});
+
+    const inputs = [
+        {label: "Username", id: "Username", type: "text"},
+        {label: "Password", id: "Password", type: "password"},
+    ];
+
+    const handleErrors = (e) => {
+        setUserNameError({error: false, helperText: ""});
+        setPasswordError({error: false, helperText: ""});
+            
+        let valid = true;
+
+        if (username === '') {
+            setUserNameError({error: true, helperText: "Username required"});
+            valid = false;
+        }
+
+        if (password === '') {
+            setPasswordError({error: true, helperText: "Password required"});
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    const handleInputs = (e, formControl) => {
+        if (formControl.id === "Username") setUsername(e.target.value);
+        if (formControl.id === "Password") setPassword(e.target.value);
+    }
+
+    const handleValue = (formControl) => {
+        if (formControl.id === "Username") return username;
+        if (formControl.id === "Password") return password;
+    }
+
+    const getError = (formControl) => {
+        if (formControl.id === "Username")
+            return userNameError;
+
+        if (formControl.id === "Password")
+            return passwordError;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (!handleErrors(e)) return;
+
+        const user = {username, password};
+
+        // THIS SHOULD WORK, WHY IT DIDN'T?!
+        // const registerFormData = new FormData();
+
+        // registerFormData.append('username', user.username);
+        // registerFormData.append('password', user.password);
+
+        console.log(user);
+
+        // axios.post('http://localhost:4000/sign_up/add', user)
+        //     .then(res => console.log(res.data))
+
+        setUsername('');
+        setPassword('');
+    }
+
+    return (
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <Stack spacing={2}>
+                <h2>Login</h2>
+                {inputs.map((formControl) => {
+                    return(
+                        <TextField value={handleValue(formControl)} key={formControl.id} onChange={(e) => handleInputs(e, formControl)} id={formControl.id} label={formControl.label} type={formControl.type} error={getError(formControl).error} helperText={getError(formControl).helperText}/>
+                    );
+                })}
+                <Button variant="contained" className="p-3" sx={{backgroundColor: "black"}} type="submit">SUBMIT</Button>
+            </Stack>
+        </form>
+    );
+}
+
 const RegistrationForm = () => {
     const [firstname, setFirstname] = useState("");
     const [middlename, setMiddlename] = useState("");
@@ -17,6 +103,7 @@ const RegistrationForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    // Refactor to array pls
     const [firstNameError, setFirstNameError] = useState({error: false, helperText: ""});
     const [middleNameError, setMiddleNameError] = useState({error: false, helperText: ""});
     const [lastNameError, setLastNameError] = useState({error: false, helperText: ""});
@@ -195,4 +282,4 @@ const RegistrationForm = () => {
     );
 }
 
-export { RegistrationForm }
+export { RegistrationForm, LoginForm }
