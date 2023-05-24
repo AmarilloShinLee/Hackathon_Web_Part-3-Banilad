@@ -14,6 +14,28 @@ router.route('/delete/:id').delete((req, res) => {
 	 });
 });
 
+// update	
+router.route('/update/:id').update((req, res) => {
+	//console.log(req.params.id);
+
+	const update = {
+		"firstname": req.params.firstname,
+		"middlename": req.params.middlename,
+		"lastname": req.params.lastname,
+		"age": req.params.age,
+		"height": req.params.height,
+		"weight": req.params.weight
+	};
+
+	User.updateOne({ _id: `${req.params.id}` }, update).then(function(){
+		res.status(200).json(`Updated: ${req.params.id}`);
+		console.log(`Successfully updated! ${req.params.id}`); // Success
+	 }).catch(function(error){
+		res.status(400).json("Failure in update.");
+		console.log(error); // Failure
+	 });
+});
+
 // login endpoint
 router.route('/login').get((req, res) => {
 	User.find()
