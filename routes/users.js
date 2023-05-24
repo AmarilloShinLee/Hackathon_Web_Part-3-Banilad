@@ -1,13 +1,24 @@
 const router = require('express').Router(); // use express router for this one
 let User = require('../models/user.model'); // assign temporary variables
 
+// deletion	
+router.route('/delete/:id').delete((req, res) => {
+	//console.log(req.params.id);
+
+	User.deleteOne({ _id: `${req.params.id}` }).then(function(){
+		res.status(200).json(`Deleted: ${req.params.id}`);
+		console.log(`Successfully deleted ${req.params.id}`); // Success
+	 }).catch(function(error){
+		res.status(400).json("Failure in deletion.");
+		console.log(error); // Failure
+	 });
+});
+
 // login endpoint
 router.route('/login').get((req, res) => {
-
-	// view all lang sa sa tanan users
 	User.find()
 	.then(users => res.status(200).json(users))
-	.then(error => res.status(400).json('Error! ' + error));
+	.catch(error => res.status(400).json('Error! ' + error));
 });
 
 // signup enpoint
@@ -22,15 +33,6 @@ router.route('/sign_up/add').post((req, res) => {
 	const age = req.body.age;
 	const height = req.body.height;
 	const weight = req.body.weight;
-
-	/*
-	const birthdate = req.body.birthdate;
-	const username = req.body.username;
-	const email = req.body.email;
-	const password = req.body.password;
-	*/
-
-	// cast into a single object
 
 	const newUser = new User({firstname, middlename, lastname, age, weight, height});
 
