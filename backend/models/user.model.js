@@ -28,34 +28,67 @@ const userSchema = new schema({
 		minlength: 3
 	},
 
-	username: {
-		type: String,
-		required: true,
-		unique: true,
+	age: {
+		type: Number,
+		required: true, 
+		unique: false,
 		trim: true,
-		minlength: 3
+		mindlength: 1
 	},
 
+	height: {
+		type: Number,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 2
+	},
+
+	weight: {
+		type: Number,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 2
+	},
+	//birthdate
+	//email
+	//username
+	//password
 	birthdate: {
 		type: Date,
 		required: true,
 		unique: false,
+		trim: true,
+		minlength: 2
 	},
-
 	email: {
 		type: String,
 		required: true,
-		unique: true,
+		unique: false,
 		trim: true,
-		minlength: 10
+		minlength: 3
 	},
-
+	username: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 3
+	},
 	password: {
 		type: String,
 		required: true,
 		unique: false,
 		trim: true,
-		minlength: 6
+		minlength: 3
+	},
+	userType: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 3
 	}
 });
 
