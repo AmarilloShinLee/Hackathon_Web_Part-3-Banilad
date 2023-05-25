@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const userSchema = new schema({
-	name: {
+
+	fullname: {
 		type: String,
 		required: true,
 		unique: false,
@@ -14,10 +15,10 @@ const userSchema = new schema({
 	
 	address: {
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
-		minlength: 10
+		minlength: 7
 	},
 
 	email: {
@@ -30,7 +31,7 @@ const userSchema = new schema({
 
 	contact: {
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 7
@@ -38,14 +39,14 @@ const userSchema = new schema({
 
 	age: {
 		type: Number,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 	},
 
 	field:{
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 4,
@@ -53,7 +54,7 @@ const userSchema = new schema({
 
 	user_introduction:{
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 4
@@ -61,7 +62,7 @@ const userSchema = new schema({
 
 	field:{
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 4,
@@ -69,24 +70,24 @@ const userSchema = new schema({
 
 	position: {
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 5
 
 	},
 
-	skillset: {
+	skillset: [{
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 3
-	},
+	}],
 
 	job_description: {
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 		minlength: 3
@@ -94,7 +95,7 @@ const userSchema = new schema({
 
 	salary_range: {
 		type: String,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true,
 	},
@@ -108,7 +109,7 @@ const userSchema = new schema({
 
 	isEmployer: {
 		type: Boolean,
-		required: true,
+		required: false,
 		unique: false,
 		trim: true
 	}
