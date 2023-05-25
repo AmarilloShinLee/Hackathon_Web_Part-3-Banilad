@@ -30,7 +30,6 @@ router.route('/update_profile/:id').put((req, res) => {
 		res.status(400).json("Failure in update.");
 		console.log(error); // Failure
 	 });
-
 });
 
 // commented out lang sa kay basin sayop, might edit this later
@@ -57,15 +56,15 @@ router.route('/update_job_info/:id').put((req, res) => {
 	 });
 });
 
-// login endpoint
+// login na unorthodox endpoint
 router.route("/login_unortho").get((req, res) => {
 	User.find()
 	.then(users => res.status(200).json(users))
 	.catch(error => res.status(400).json('Error! ' + error));
 });
 
-// login endpoint
-router.route("/login").get((req, res) => {
+// copy to login endpoint
+router.route("/feed").get((req, res) => {
 	User.find()
 	.then(users => res.status(200).json(users))
 	.catch(error => res.status(400).json('Error! ' + error));
@@ -117,7 +116,6 @@ router.route('/sign_up/add').post((req, res) => {
 		.then(() => res.status(200).json('Successfully registered'))
 		.catch((err) => res.status(400).json('Error in registration.' + err));
 });
-
 // end of sign-up endpoints
 
 module.exports = router;
