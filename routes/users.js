@@ -63,6 +63,14 @@ router.route("/login_unortho").get((req, res) => {
 	.catch(error => res.status(400).json('Error! ' + error));
 });
 
+// login na tarong endpoint
+router.route("/login").post((req, res) => {
+	console.log(req);
+	User.findOne({email: `${req.body.email}`})
+	.then(users => res.status(200).json(users))
+	.catch(error => res.status(400).json('Error! ' + error));
+});
+
 // copy to login endpoint
 router.route("/feed").get((req, res) => {
 	User.find()
@@ -102,14 +110,17 @@ router.route('/sign_up/full').post((req, res) => {
 });
 
 router.route('/sign_up/add').post((req, res) => {
+	console.log(req.body);
 	
 	// igka send ug post request makuha ni	 sila dapat
 	const fullname = req.body.fullname;
 	const email = req.body.email;
 	const password = req.body.password;
 	const isEmployer = req.body.isEmployer;
+	const fields = req.body.fields;
+	const positions = req.body.fields;
 
-	const newUser = new User({fullname, email, password, isEmployer});
+	const newUser = new User({fullname, email, password, isEmployer, fields, positions});
 
 	// register user
 	newUser.save()

@@ -68,22 +68,22 @@ const userSchema = new schema({
 		minlength: 4
 	},
 
-	field:{
+	fields:[{
 		type: String,
 		required: false,
 		unique: false,
 		trim: true,
 		minlength: 4,
-	},
+	}],
 
-	position: {
+	positions: [{
 		type: String,
 		required: false,
 		unique: false,
 		trim: true,
 		minlength: 5
 
-	},
+	}],
 
 	skillset: [{
 		type: String,
