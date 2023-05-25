@@ -1,11 +1,10 @@
 // User Schema/Table. All of the user information is defined here
-
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema;
 
 const userSchema = new schema({
-	firstname: {
+	name: {
 		type: String,
 		required: true,
 		unique: false,
@@ -13,79 +12,106 @@ const userSchema = new schema({
 		minlength: 3
 	},
 	
-	middlename: {
-		type: String,
-		required: false, // not everyone has a middle name
-		unique: false,
-		trim: true,
-		mindlength: 3
-	},
-
-
-	lastname: {
+	address: {
 		type: String,
 		required: true,
 		unique: false,
 		trim: true,
-		minlength: 3
-	},
-
-	age: {
-		type: Number,
-		required: true, 
-		unique: false,
-		trim: true,
-		mindlength: 1
-
-	},
-
-	height: {
-		type: Number,
-		required: true,
-		unique: false,
-		trim: true,
-		minlength: 2
-	},
-
-	weight: {
-		type: Number,
-		required: true,
-		unique: false,
-		trim: true,
-		minlength: 2
-	},
-
-	/*
-	username: {
-		type: String,
-		required: true,
-		unique: true,
-		trim: true,
-		minlength: 3
-	},
-
-	birthdate: {
-		type: Date,
-		required: true,
-		unique: false,
+		minlength: 10
 	},
 
 	email: {
 		type: String,
 		required: true,
-		unique: true,
+		unique: true, // one email at a time lang
 		trim: true,
-		minlength: 10
+		minlength: 7,
+	},
+
+	contact: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 7
+	},
+
+	age: {
+		type: Number,
+		required: true,
+		unique: false,
+		trim: true,
+	},
+
+	field:{
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 4,
+	},
+
+	user_introduction:{
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 4
+	},
+
+	field:{
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 4,
+	},
+
+	position: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 5
+
+	},
+
+	skillset: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 3
+	},
+
+	job_description: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
+		minlength: 3
+	},
+
+	salary_range: {
+		type: String,
+		required: true,
+		unique: false,
+		trim: true,
 	},
 
 	password: {
 		type: String,
 		required: true,
 		unique: false,
-		trim: true,
-		minlength: 6
+		trim: true
+	},
+
+	isEmployer: {
+		type: Boolean,
+		required: true,
+		unique: false,
+		trim: true
 	}
-	*/
 });
 
 // assign this model to the mongoose models
