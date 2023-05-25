@@ -12,6 +12,14 @@ const userSchema = new schema({
 		trim: true,
 		minlength: 3
 	},
+
+	gender: {
+		type: String,
+		required: false,
+		unique: false,
+		trim: true,
+		minlength: 4
+	},
 	
 	address: {
 		type: String,
@@ -52,7 +60,7 @@ const userSchema = new schema({
 		minlength: 4,
 	},
 
-	user_introduction:{
+	introduction:{
 		type: String,
 		required: false,
 		unique: false,
