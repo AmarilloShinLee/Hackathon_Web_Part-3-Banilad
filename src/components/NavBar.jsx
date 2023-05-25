@@ -19,7 +19,7 @@ const navBarTheme = createTheme({
         contrastText: '#000',
       }
     },
-  });
+});
 
 const Navbar = () => {
     return(

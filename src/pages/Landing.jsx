@@ -52,27 +52,29 @@ const fontTheme = createTheme({
 });
 
 const LandingPage = () => {
-    const [state, setState] = useState(0);
-
     return (
         <>
             <Box>
                 <ThemeProvider theme={fontTheme}>
                     <Grid container>
                         <Grid xs={8}>
-                            <Box sx={{bgcolor: "#AEAEAE", width: "48em", marginLeft: "8em", marginTop: "20em", padding: "3em", borderRadius: "1em"}}>
+
+                            <Box sx={{bgcolor: "#AEAEAE", width: "48em", marginLeft: "8em", marginTop: "20em", padding: "3em", borderRadius: "50px", background: "rgba(147, 148, 158, 0.46);"}}>
                                 <h1>Test</h1>
                                 <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae neque viverra, lobortis ligula eu, aliquet magna. Vivamus consequat mauris ut mauris vehicula posuere. Suspendisse sollicitudin neque sit amet ante tempus ultrices. Pellentesque in dapibus leo, sed pulvinar neque. Nunc gravida nibh ut urna iaculis, nec rutrum ante rhoncus. Duis convallis eros arcu, vitae euismod ante pretium eu. Suspendisse aliquet sapien nec justo congue tempus. Donec placerat leo eget ligula maximus, ac rhoncus velit aliquam. Vivamus auctor mauris id finibus dapibus.</Typography>
                                 <Stack direction="row" spacing={2}>
+
                                     <ThemeProvider theme={theme}>
                                         <Button variant='contained' color='primary' href='/login'>SIGN IN</Button>
                                         <Button variant='contained' color='secondary' href='/sign_up'>SIGN UP</Button>
                                     </ThemeProvider>
+                                    
                                 </Stack>
                             </Box>
+
                         </Grid>
                         <Grid xs={4}>
-                            <Sidebar setValue={state} />
+                            <Sidebar/>
                         </Grid>
                     </Grid>
                 </ThemeProvider>

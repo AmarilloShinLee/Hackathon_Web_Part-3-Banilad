@@ -4,7 +4,8 @@ import buttonStyle from "./Form.module.css";
 import { useState } from "react";
 
 import { Stack, TextField, Button, FormGroup, InputAdornment, Radio, FormControl, FormLabel, FormControlLabel, RadioGroup, FormHelperText,
-    Menu, MenuItem, Select, InputLabel } from "@mui/material";
+    Menu, MenuItem, Select, InputLabel, Grid, Paper } from "@mui/material";
+import { styled } from '@mui/material/styles'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -83,21 +84,51 @@ const LoginForm = () => {
 
         console.log(user);
 
-        // axios.post('http://localhost:4000/login', user)
-        //     .then(res => {
+        axios.post('http://localhost:4000/login', user)
+            .then(res => {
+                console.log(res.data);
+
+                if (!res.data.user) return;
+                
+                // if (res.data.userType === 'user')
+                //     window.location.href = '/user';
+
+                // if (res.data.userType === 'admin')
+                //     window.location.href = '/admin';
+
+                window.location.href = '/employee/newsfeed';
+            })
+            .catch(err => console.log(err))
+
+        // axios.post('http://192.168.94.164:4000/users/sign_up/add', user)
+        //     .then(res => {  
         //         console.log(res.data);
 
-        //         if (!res.data.user) return;
-                
-        //         // if (res.data.userType === 'user')
-        //         //     window.location.href = '/user';
+        //         alert("Login Successful!");
 
-        //         // if (res.data.userType === 'admin')
-        //         //     window.location.href = '/admin';
+        //         setFirstname('');
+        //         setMiddlename('');
+        //         setLastname('');
+        //         setGender('');
+        //         // setAge('');
+        //         // setWeight('');
+        //         // setHeight('');
+        //         setBirthdate('');
 
-        //         //window.location.href = '/';
+        //         setFullName('');
+        //         setEmail('');
+        //         // setUsername('');
+        //         setPassword('');
+        //         setConfirmPassword('');
+        //         setUserType('');
+
+        //         window.location.href = "/login";
         //     })
-        //     .catch(err => console.log(err))
+        //     .catch(err => {
+        //         console.log(err.data);
+        //         alert(`Something is wrong:\n${err.data}`);
+        //         return;
+        //     })
 
         setEmail('');
         setPassword('');
@@ -121,7 +152,7 @@ const LoginForm = () => {
     );
 }
 
-const RegistrationForm = () => {
+const RegistrationFormUserDetails = () => {
 
     // Please Update to array (LATER)
     // const [registerCredentials, setRegisterCredentials] = useState([
@@ -155,6 +186,8 @@ const RegistrationForm = () => {
     {id: "height", label: "Height", type: "text", endAdornment: "cm"},
     {id: "username", label: "Username", type: "text", endAdornment: null},
     */
+
+    const [id, setId] = useState(new Object("646ebd14b3dc44baa051d8be"));
 
     const [firstname, setFirstname] = useState("");
     const [middlename, setMiddlename] = useState("");
@@ -546,14 +579,24 @@ const RegistrationForm = () => {
 
         //const birthdate = new Date(birthDate.$y, birthDate.$M, birthDate.$D);
 
-        const user = {fullname, email, password}
+        const user = {id, fullname, email, password}
 
         if (!handleErrors(e)) { 
             console.log("Something is wrong");
             return;
-         }
+        }
 
         console.log(user);
+
+        // axios.put('http://192.168.94.164:4000/users/update/:id', user)
+        //     .then(res => {
+        //         alert("Update successful!")
+        //         console.log(res.data);
+        //     })
+        //     .catch(err => {
+        //         alert(`Error: ${err}`)
+        //         console.log(err);
+        //     })
 
         // const user = {firstname, middlename, lastname, age, weight, height}; //birthdate, email, username, password
 
@@ -571,8 +614,8 @@ const RegistrationForm = () => {
         // console.log(user);
 
         // (inhales) BRO
-        axios.post('http://122.68.10.39:4000/users/sign_up/add', user)
-            .then(res => {
+        axios.post('http://192.168.94.164:4000/users/sign_up/add', user)
+            .then(res => {  
                 console.log(res.data);
 
                 alert("Login Successful!");
@@ -670,12 +713,85 @@ const RegistrationForm = () => {
                         </FormGroup>
                     )
                 })}
-                <Button variant="contained" className={`p-3 ${buttonStyle.primaryButton}`} color='primary' type="submit" sx={{bgcolor: "#000000", "&:hover": {bgcolor: "#FFFFFF", color: "#000"}}} >SUBMIT</Button>
+                {/* <Button variant="contained" className={`p-3 ${buttonStyle.primaryButton}`} color='primary' type="submit" sx={{bgcolor: "#000000", "&:hover": {bgcolor: "#FFFFFF", color: "#000"}}} >SUBMIT</Button> */}
 
-                <p>Already have an account? <Button variant="outline" className="p-1" href="/login">SIGN IN</Button></p>
+                {/* <p>Already have an account? <Button variant="outline" className="p-1" href="/login">SIGN IN</Button></p> */}
             </Stack>
         </form>
     );
 }
 
-export { RegistrationForm, LoginForm } //LoginForm
+const RegistrationFormFields = () => {
+
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    }));
+
+    const fields = [
+        "Computer Programming",
+        "Engineering", 
+        "Health Administration",
+        "Biochemistry",
+        "Mechanical Engineering",
+        "Chemical Engineer",
+        "Physical Chemistry",
+        "Mechanical Engineer",
+        "Chemical Engineer"
+    ];
+
+    return (
+        <form> {/* onSubmit={(e) => handleSubmit(e)} */}
+            <h2>Choose Field</h2>
+            <Grid spacing={2}>
+                {fields.map((el) => {
+                    <Grid item xs={8}>
+                        <Item>{el}</Item>
+                    </Grid>
+                })}
+            </Grid>
+        </form>
+    );
+ 
+}
+
+const RegistrationFormPosition = () => {
+
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    }));
+
+    const position = [
+        "Computer Programming",
+        "Engineering", 
+        "Health Administration",
+        "Biochemistry",
+        "Mechanical Engineering",
+        "Chemical Engineer",
+        "Physical Chemistry",
+        "Mechanical Engineer",
+        "Chemical Engineer"
+    ];
+
+    return (
+        <form > {/*onSubmit={(e) => handleSubmit(e)}*/}
+            <h2>Choose Position</h2>
+            <Grid spacing={2}>
+                {position.map((el) => {
+                    <Grid item xs={8}>
+                        <Item>{el}</Item>
+                    </Grid>
+                })}
+            </Grid>
+        </form>
+    );
+}
+
+export { RegistrationFormUserDetails, RegistrationFormFields, RegistrationFormPosition, LoginForm } //LoginForm
