@@ -1,8 +1,16 @@
+import react from 'react';
+import {useState, useEffect} from 'react';
+import FeedCard from '../../components/FeedCard';
+import { Navbar } from '../../components/NavBar';
 
-const NewsFeedEmployee = () => {
-    return(
-        <h2>THIS IS A NEWS FEED (Employee)</h2>
-    );
+const NewsFeed = () => {   
+   
+   return(
+      <>
+         <Navbar/>
+         <FeedCard/>                    
+      </> 
+   );
 }
 
-export default NewsFeedEmployee;
+export default NewsFeed;
