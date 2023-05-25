@@ -14,7 +14,8 @@ router.route('/delete/:id').delete((req, res) => {
 	 });
 });
 
-// update	
+// commented out lang sa kay basin sayop, might edit this later
+/*
 router.route('/update/:id').update((req, res) => {
 	//console.log(req.params.id);
 
@@ -35,6 +36,7 @@ router.route('/update/:id').update((req, res) => {
 		console.log(error); // Failure
 	 });
 });
+*/
 
 // login endpoint
 router.route('/login').get((req, res) => {
@@ -43,22 +45,31 @@ router.route('/login').get((req, res) => {
 	.catch(error => res.status(400).json('Error! ' + error));
 });
 
-// signup enpoint
+// signup enpoints
 
-//Added another end point for sign up
-router.route('/sign_up/add').post((req, res) => {
+//Added another end point for sign up, full update
+router.route('/sign_up/full').post((req, res) => {
 	
 	// igka send ug post request makuha ni	 sila dapat
-	const firstname = req.body.firstname;
-	const middlename = req.body.middlename;
-	const lastname = req.body.lastname;
+	const fullname = req.body.name;
+	const gender = req.body.gender;
+	const address = req.body.address;
+	const email = req.body.email;
+	const contact = req.body.contact;
 	const age = req.body.age;
-	const height = req.body.height;
-	const weight = req.body.weight;
+	const field = req.body.field;
+	const introduction = req.body.introduction;
+	const position = req.body.name;
+	const skillset = req.body.gender;
+	const job = req.body.address;	
+	const salary_range = req.body.range;
+	const password = req.body.password;
+	const isEmployer = req.body.isEmployer;
 
-	const newUser = new User({firstname, middlename, lastname, age, weight, height});
-
-	//const newUser = new User({firstname, middlename, lastname, username, birthdate, email, password});
+	const newUser = new User({fullname, gender, address, 
+		email, contact, age, field, introduction, position,
+		skillset, job, salary_range, password, isEmployer
+	});
 
 	// register user
 	newUser.save()
@@ -66,4 +77,55 @@ router.route('/sign_up/add').post((req, res) => {
 		.catch((err) => res.status(400).json('Error in registration.' + err));
 });
 
+//Added another end point for sign up, full update
+router.route('/sign_up/full').post((req, res) => {
+	
+	// igka send ug post request makuha ni	 sila dapat
+	const fullname = req.body.fullname;
+	const gender = req.body.gender;
+	const address = req.body.address;
+	const email = req.body.email;
+	const contact = req.body.contact;
+	const age = req.body.age;
+	const field = req.body.field;
+	const introduction = req.body.introduction;
+	const position = req.body.name;
+	const skillset = req.body.gender;
+	const job = req.body.address;	
+	const salary_range = req.body.range;
+	const password = req.body.password;
+	const isEmployer = req.body.isEmployer;
+
+	const newUser = new User({fullname, gender, address, 
+		email, contact, age, field, introduction, position,
+		skillset, job, salary_range, password, isEmployer
+	});
+
+	// register user
+	newUser.save()
+		.then(() => res.status(200).json('Successfully registered'))
+		.catch((err) => res.status(400).json('Error in registration.' + err));
+});
+
+router.route('/sign_up/add').post((req, res) => {
+	
+	// igka send ug post request makuha ni	 sila dapat
+	const fullname = req.body.fullname;
+	const email = req.body.email;
+	const password = req.body.password;
+
+	const newUser = new User({fullname, email, password});
+
+	// register user
+	newUser.save()
+		.then(() => res.status(200).json('Successfully registered'))
+		.catch((err) => res.status(400).json('Error in registration.' + err));
+});
+
+// end of sign-up endpoints
+
 module.exports = router;
+
+// employer news feed
+
+
